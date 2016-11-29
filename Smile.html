@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dots</title>
+    <style>
+        div { position: absolute  }#rightSide,
+        body{}
+        h1 {color: #491cff
+        }
+        p {color: #f724ff
+        }
+        img {position:absolute; width:100px; height:100px;}
+        div {position:absolute; width: 500px; height: 500px;}
+        #rightSide {left:500px; border-left: 1px solid #0bfffc;}
+    </style>
+</head>
+<body onload="generateFaces();" background="http://i.imgur.com/NcpstRy.gif">
+
+
+<h1 align="center">Dots</h1>
+<p align="center">Click on the extra seizure inducing image on the left to progress</p>
+<table border="10px">
+<div id="leftSide"></div>
+
+<div id="rightSide"></div>
+
+
+</body>
+<script>
+    var theLeftSide =
+            document.getElementById("leftSide");
+    var theRightSide =
+            document.getElementById("rightSide");
+    var numberOfFaces = 5;
+    var theBody =
+            document.getElementsByTagName("body")[0];
+
+    function generateFaces() {
+        for (var i = 1; i <= numberOfFaces; i++) {
+            var img = document.createElement("img");
+           // img.src = "https://m.popkey.co/d806e2/5Grze.gif";
+           // img.src =" http://2.bp.blogspot.com/-P_UI22EYnXg/U17Ev6cH5FI/AAAAAAAANdY/0YGxtO0oO_Y/s1600/fantastische+bewegende+optische+illusie+%25285%2529.gif" ;
+               img.src = "http://i.imgur.com/NcpstRy.gif" ;
+            img.style.top = Math.floor(Math.random() * 400) + 'px';
+
+
+            img.style.left = Math.floor(Math.random() * 400) + 'px';
+            theLeftSide.appendChild(img)
+
+        }
+        var leftSideImages = theLeftSide.cloneNode(true);
+
+        leftSideImages.removeChild(leftSideImages.lastChild);
+        theRightSide.appendChild(leftSideImages);
+        theLeftSide.lastChild.onclick = function nextLevel(event) {
+
+            event.stopPropagation();
+            while (theLeftSide.firstChild) {
+                theLeftSide.removeChild(theLeftSide.firstChild);
+
+            }
+            while (theRightSide.firstChild) {
+                theRightSide.removeChild(theRightSide.firstChild)
+            }
+            numberOfFaces += 5;
+            generateFaces();
+        };
+    }
+    theBody.onclick = function gameOver() {
+        alert("Game Over! YOU SUCK DO IT AGAIN!!!");
+        theBody.onclick = null;
+        theLeftSide.lastChild.onclick = null;
+        location.reload()
+    };
+</script>
+
+<audio controls autoplay loop>
+   <source src="RAVICORN(Geometry dash)ID16251787 MY BEST YET3.mp3" type="audio/mpeg">
+    <source src="RAVICORN(Geometry dash)ID16251787 MY BEST YET3.mp3" type="audio/ogg">
+</audio>
+
+</html>
